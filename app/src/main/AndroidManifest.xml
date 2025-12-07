@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
+        tools:ignore="BackgroundLocationPolicy" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,17 +19,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplicationJetpackJob_3">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDMSEYJ6Jhm8XKSZyG-KXjtIwKgYx4iiOI" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.SignInActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplicationJetpackJob_3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- SignUpActivity -->
+        <activity
+            android:name=".Activities.SignUpActivity"
+            android:exported="true"
+            android:label="Sign Up"
+            android:theme="@style/Theme.MyApplicationJetpackJob_3" />
+
+        <!-- HomeActivity -->
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:exported="true"
+            android:label="Home"
+            android:theme="@style/Theme.MyApplicationJetpackJob_3" />
     </application>
 
 </manifest>
