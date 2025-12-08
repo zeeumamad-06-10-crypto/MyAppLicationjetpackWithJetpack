@@ -22,10 +22,10 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDMSEYJ6Jhm8XKSZyG-KXjtIwKgYx4iiOI" />
+            android:value="AIzaSyD3tY1l711F2Q6VkdenGpJev0-rfXaOhs4" />
 
         <activity
-            android:name=".Activities.SignInActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplicationJetpackJob_3">
@@ -34,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <!-- SignUpActivity -->
         <activity
@@ -48,6 +49,6 @@
             android:exported="true"
             android:label="Home"
             android:theme="@style/Theme.MyApplicationJetpackJob_3" />
-    </application>
 
+</application>
 </manifest>

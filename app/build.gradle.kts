@@ -72,6 +72,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:19.2.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("com.google.android.gms:play-services-base:18.9.0")
+    // Maps Compose for Jetpack Compose
+    implementation("com.google.maps.android:maps-compose:2.14.0")
 
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.3")
