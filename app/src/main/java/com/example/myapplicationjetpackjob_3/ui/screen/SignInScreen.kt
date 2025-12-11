@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.example.myapplicationjetpackjob_3.AuthViewModel
 
 @Composable
-fun SignInScreen(viewModel: AuthViewModel, onNavigateHome: () -> Unit, onNavigateSignUp: () -> Unit) {
+fun SignInScreen(viewModel: AuthViewModel, onNavigateHome: () -> Unit, onNavigateSignUp: () -> Unit
+
+) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 

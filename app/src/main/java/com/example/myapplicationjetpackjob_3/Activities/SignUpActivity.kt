@@ -21,6 +21,9 @@ class SignUpActivity : ComponentActivity() {
                 onNavigateHome = {
                     startActivity(Intent(this, HomeActivity::class.java))
                     finish() // close SignUpActivity
+                } ,
+                onNavigateSignIn = {
+                    startActivity(Intent(this, SignInActivity::class.java))
                 }
             )
         }

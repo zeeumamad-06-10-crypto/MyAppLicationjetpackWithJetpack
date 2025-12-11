@@ -11,6 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myapplicationjetpackjob_3"
+
         minSdk = 24
         targetSdk = 36
         versionCode = 1

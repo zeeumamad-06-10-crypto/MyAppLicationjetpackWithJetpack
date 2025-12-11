@@ -19,6 +19,7 @@ import androidx.compose.foundation.clickable
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.LocationServices
+
 @Composable
 fun HomeScreen(
     viewModel: AuthViewModel,
@@ -134,8 +135,10 @@ fun HomeScreen(
         // Button to open all users on map
         item {
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { navController.navigate("map_screen?showAll=true") }) {
-                Text("Open Map")
+            Button(onClick = {
+                navController.navigate("map_screen?userId=&showAll=true")
+            }) {
+                Text("Show All Users")
             }
         }
 

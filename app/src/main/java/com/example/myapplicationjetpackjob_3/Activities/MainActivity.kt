@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
                         onNavigateSignUp = {
                             authViewModel.signOut()
                             navController.navigate("signIn") { popUpTo("home") { inclusive = true } }
+
                         }
                     )
                 }
@@ -47,22 +48,22 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable("signUp") {
-                    SignUpScreen(viewModel = authViewModel) {
-                        navController.navigate("home") { popUpTo("signUp") { inclusive = true } }
-                    }
+                    SignUpScreen(
+                        viewModel = authViewModel,
+                        onNavigateHome = {
+                            navController.navigate("home") {
+                                popUpTo("signIn") { inclusive = true }
+                            }
+                        },
+                        onNavigateSignIn = {
+                            navController.navigate("signIn") {
+                                popUpTo("signUp") { inclusive = true }
+                            }
+                        }
+                    )
                 }
 
-                composable(
-                    route = "map_screen?userId={userId}&showAll={showAll}",
-                    arguments = listOf(
-                        navArgument("userId") { defaultValue = "" },
-                        navArgument("showAll") { type = NavType.BoolType; defaultValue = false }
-                    )
-                ) { backStackEntry ->
-                    val userId = backStackEntry.arguments?.getString("userId")
-                    val showAll = backStackEntry.arguments?.getBoolean("showAll") ?: false
-                    MapScreen(userId = if(userId.isNullOrEmpty()) null else userId, showAll = showAll)
-                }
+
             }
         }
     }

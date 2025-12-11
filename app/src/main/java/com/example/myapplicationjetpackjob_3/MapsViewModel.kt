@@ -1,15 +1,12 @@
 package com.example.myapplicationjetpackjob_3
 
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-
-// User data model (update fields according to your Firestore structure)
-
+import kotlinx.coroutines.tasks.await
 
 class MapsViewModel(private val db: FirebaseFirestore) : ViewModel() {
 
@@ -19,35 +16,27 @@ class MapsViewModel(private val db: FirebaseFirestore) : ViewModel() {
     private val _singleUser = MutableStateFlow<User?>(null)
     val singleUser: StateFlow<User?> = _singleUser
 
-    // Load all users from Firestore
     fun loadAllUsers() {
         viewModelScope.launch {
-            db.collection("users")
-                .get()
-                .addOnSuccessListener { result ->
-                    val list = result.documents.mapNotNull { doc ->
-                        doc.toObject(User::class.java)?.copy(uid = doc.id)
-                    }
-                    _allUsers.value = list
+            try {
+                val result = db.collection("users").get().await()
+                _allUsers.value = result.documents.mapNotNull { doc ->
+                    doc.toObject(User::class.java)?.copy(uid = doc.id)
                 }
-                .addOnFailureListener {
-                    _allUsers.value = emptyList()
-                }
+            } catch (e: Exception) {
+                _allUsers.value = emptyList()
+            }
         }
     }
 
-    // Load single user by UID
     fun loadSingleUser(uid: String) {
         viewModelScope.launch {
-            db.collection("users").document(uid)
-                .get()
-                .addOnSuccessListener { doc ->
-                    val user = doc.toObject(User::class.java)?.copy(uid = doc.id)
-                    _singleUser.value = user
-                }
-                .addOnFailureListener {
-                    _singleUser.value = null
-                }
+            try {
+                val doc = db.collection("users").document(uid).get().await()
+                _singleUser.value = doc.toObject(User::class.java)?.copy(uid = doc.id)
+            } catch (e: Exception) {
+                _singleUser.value = null
+            }
         }
     }
 }

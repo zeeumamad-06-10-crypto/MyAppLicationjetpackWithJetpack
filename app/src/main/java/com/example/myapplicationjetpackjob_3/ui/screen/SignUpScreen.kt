@@ -14,7 +14,9 @@ import com.example.myapplicationjetpackjob_3.AuthViewModel
 @Composable
 fun SignUpScreen(
     viewModel: AuthViewModel,
-    onNavigateHome: () -> Unit
+    onNavigateHome: () -> Unit,
+    onNavigateSignIn:() -> Unit,
+
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -39,9 +41,16 @@ fun SignUpScreen(
             onValueChange = { password = it },
             label = { Text("Password") }
         )
+
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { viewModel.signUp(email, password) }) {
             Text("Sign Up")
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { onNavigateSignIn() }) {
+            Text("Sign In")
+        }
+
+
     }
 }
